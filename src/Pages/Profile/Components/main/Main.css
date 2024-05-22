@@ -1,0 +1,98 @@
+.profileMain {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 32px;
+}
+
+.profileMain .heroSection {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    padding-top: 56px;
+    background-color: #FFFFFF;
+    gap:16px;
+}
+
+.profileMain .heroSection .whoCommented{
+    display: flex;
+    gap: 8px;
+}
+.profileMain .heroSection .comment {
+    display: flex;
+    flex-direction: column;
+    border-left: 2px #D3D8DE solid;
+    padding: 10px;
+    gap: 16px;
+}
+
+.profileMain .heroSection .comment .text {
+    font-size: 14px;
+    line-height: 16.41px;
+}
+
+.profileMain .heroSection .comment .time {
+    font-size: 14px;
+    line-height: 16.41px;
+    color: #8F8F8F;
+}
+
+.profileMain .heroSection .meta .list{
+    display: flex;
+    gap: 32px;
+}
+.profileMain .heroSection .meta .list .item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 18.75px;
+    gap: 8px;
+}
+
+.profileMain  .comments {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 32px;
+}
+.profileMain  .comments .comment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: #FFFFFF;
+}
+.profileMain  .comments .comment .meta {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 18.75px;
+    gap: 16px;
+}
+
+.profileMain  .comments .comment > p {
+    font-size: 16px;
+    line-height: 18.75px;
+}
+
+@media only screen and (max-width: 450px) {
+
+    .profileMain  .comments .comment {
+        padding: 8px;
+    }
+    .profileMain  .comments .comment .meta {
+        font-size: 14px;
+    }
+    .profileMain  .comments .comment > p {
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+
+
+

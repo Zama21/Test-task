@@ -1,0 +1,38 @@
+.wrapperMain {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 32px;
+    width: calc(100vw - 32*2px);
+    max-width: 1376px;
+    background-color: #FFFFFF;
+    gap: 10px;
+}
+
+.wrapperHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 32px;
+    height: 56px;
+}
+.timer {
+    font-size: 16px;
+    line-height: 18.75px;
+}
+.wrapperBtns {
+    display: flex;
+    gap: 8px;
+}
+
+.wrapperMain .time {
+    margin: 0 32px;
+    padding-bottom: 32px;
+    font-size: 16px;
+    line-height: 18.75px;
+}
+.wrapperHeader .wrapperBtns .item {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
