@@ -54,7 +54,7 @@ function addEventListenerForResetBtn() {
     const updateButton = document.querySelector('.resetTimerBtn');
     updateButton.addEventListener('click', () => {
         startTimer();
-        updateTimerDisplay();
+        resetTimer();
     });
 }
 
@@ -64,10 +64,15 @@ window.addEventListener('DOMContentLoaded', () => {
     startTimer();
     if (window.location.pathname === '/Test-task/timer') {
         timerElement = document.querySelector('.time');
-        timerInterval = setInterval(updateTimerDisplay, 1000);
-        updateTimerDisplay();
+        resetTimer();
         addEventListenerForResetBtn();
     } else {
         clearInterval(timerInterval);
     }
 });
+
+function resetTimer() {
+    timerInterval = clearInter(timerInterval);
+    timerInterval = setInterval(updateTimerDisplay, 1000);
+    updateTimerDisplay();
+}
