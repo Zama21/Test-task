@@ -1,0 +1,16 @@
+.wrapperMainProfile{
+    display: flex;
+    margin: 0 auto;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    width: calc(100vw - 32*2px);
+    max-width: 1376px;
+    gap: 32px;
+}
+
+@media only screen and (max-width: 600px) {
+    .wrapperMainProfile{
+        flex-direction: column-reverse;
+        width: calc(100vw - 16*2px);
+    }
+}
