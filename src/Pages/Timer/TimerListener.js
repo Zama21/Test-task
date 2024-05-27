@@ -1,7 +1,6 @@
 let startTime;
-let timerInterval;
-let timerIntervalLoadElement;
 let timerElement;
+let requestId;
 
 function formatTime(seconds) {
     const hours = Math.floor(seconds / 3600);
@@ -17,45 +16,31 @@ function startTimer() {
     startTime = Date.now();
 }
 
-function clearInter(interval) {
-    clearInterval(interval);
-    return undefined;
-}
+function updateTimerDisplayWithRAF() {
+    if (!timerElement) {
+        timerElement = document.querySelector('.time');
+        addEventListenerForResetBtn();
+    }
 
-function updateTimerDisplay() {
-    timerIntervalLoadElement = clearInter(timerIntervalLoadElement);
     timerElement.textContent = formatTime(
         Math.floor((Date.now() - startTime) / 1000)
     );
-}
-
-function waitLoad() {
-    if (!timerIntervalLoadElement)
-        timerIntervalLoadElement = setInterval(() => {
-            timerElement = document.querySelector('.time');
-            if (timerElement) {
-                addEventListenerForResetBtn();
-                updateTimerDisplay();
-                timerInterval = setInterval(updateTimerDisplay, 1000);
-            }
-        }, 100);
+    requestId = window.requestAnimationFrame(updateTimerDisplayWithRAF);
 }
 
 function handlePageChange() {
     if (window.location.pathname === '/Test-task/timer') {
-        waitLoad();
+        timerElement = undefined;
+        if (!requestId) window.requestAnimationFrame(updateTimerDisplayWithRAF);
     } else {
-        timerInterval = clearInter(timerInterval);
-        timerIntervalLoadElement = clearInter(timerIntervalLoadElement);
+        window.cancelAnimationFrame(requestId);
+        requestId = undefined;
     }
 }
 
 function addEventListenerForResetBtn() {
     const updateButton = document.querySelector('.resetTimerBtn');
-    updateButton.addEventListener('click', () => {
-        startTimer();
-        resetTimer();
-    });
+    updateButton.addEventListener('click', startTimer);
 }
 
 window.addEventListener('popstate', handlePageChange);
@@ -63,16 +48,7 @@ window.addEventListener('popstate', handlePageChange);
 window.addEventListener('DOMContentLoaded', () => {
     startTimer();
     if (window.location.pathname === '/Test-task/timer') {
-        timerElement = document.querySelector('.time');
-        resetTimer();
-        addEventListenerForResetBtn();
-    } else {
-        clearInterval(timerInterval);
+        if (!requestId)
+            requestId = window.requestAnimationFrame(updateTimerDisplayWithRAF);
     }
 });
-
-function resetTimer() {
-    timerInterval = clearInter(timerInterval);
-    timerInterval = setInterval(updateTimerDisplay, 1000);
-    updateTimerDisplay();
-}
